@@ -143,3 +143,8 @@ export interface SpotifyTrackItem {
   uri: string;
   is_local: boolean;
 }
+
+export interface SimplifiedTrack {
+  album: AlbumObject;
+  name: string;
+}

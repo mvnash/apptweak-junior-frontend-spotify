@@ -11,6 +11,7 @@ import TrackItemComponent from "./TrackItemComponent";
 import { EpisodeObject, SpotifyTrackItem } from "../types";
 import EpisodeComponent from "./EpisodeComponent";
 import DropdownMenu from "./DropDownMenu";
+import SearchBar from "./SearchBar";
 
 const PlaylistPage: FC = (): ReactElement => {
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(
@@ -37,6 +38,9 @@ const PlaylistPage: FC = (): ReactElement => {
 
   return (
     <div className="PlaylistPage">
+      <div className="topContainer">
+        <SearchBar/>
+      </div>
       <div className="selectionPlaylistContainer">
       <DropdownMenu
           selectedPlaylistId={selectedPlaylistId}
