@@ -25,7 +25,7 @@ const EpisodeComponent: React.FC<EpisodeObject> = ({
 }) => {
   return (
     <div>
-      <img src={images[0].url} alt="Cover" height={100} width={100} />
+      <img className="coverAlbum" src={images[0].url} alt="Cover" />
       <p>{name}</p>
       <p>{description ?? ""}</p>
       <p>{release_date}</p>

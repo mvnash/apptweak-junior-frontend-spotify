@@ -29,8 +29,6 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
         className="coverAlbum"
         src={album.images[0].url}
         alt="Cover"
-        height={100}
-        width={100}
       />
       <div className="titleArtistContainer">
         <p className="titleTrack">{name}</p>

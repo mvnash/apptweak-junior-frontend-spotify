@@ -48,3 +48,8 @@ li {
   font-size: 12px;
   color: gray;
 }
+
+.coverAlbum {
+  height:100px;
+  width:100px;
+}
