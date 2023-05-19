@@ -12,25 +12,23 @@ import { EpisodeObject, SpotifyTrackItem } from "../types";
 import EpisodeComponent from "./EpisodeComponent";
 import DropdownMenu from "./DropDownMenu";
 import SearchBar from "./SearchBar";
+import UserProfile from "./UserProfile";
 
 const PlaylistPage: FC = (): ReactElement => {
-  const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(
-    null
-  );
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<string>("");
   const accessToken = useSelector(authSelectors.getAccessToken);
 
   const { data: user } = useGetUserQuery(undefined, {
     skip: !accessToken,
   });
   console.log(user);
-  
 
   const { data: playlists } = useGetPlaylistsQuery(undefined, {
     skip: !accessToken,
   });
 
   const { data: playlistTracks } = useGetPlaylistTracksQuery(
-    "playlists/" + selectedPlaylistId + "/tracks",
+    selectedPlaylistId,
     {
       skip: !accessToken || !selectedPlaylistId,
     }
@@ -39,10 +37,15 @@ const PlaylistPage: FC = (): ReactElement => {
   return (
     <div className="PlaylistPage">
       <div className="topContainer">
-        <SearchBar/>
+        <div className="searchBarContainer">
+          <SearchBar />
+        </div>
+        <div className="userProfileContainer">
+          <UserProfile />
+        </div>
       </div>
       <div className="selectionPlaylistContainer">
-      <DropdownMenu
+        <DropdownMenu
           selectedPlaylistId={selectedPlaylistId}
           playlists={playlists}
           setSelectedPlaylistId={setSelectedPlaylistId}

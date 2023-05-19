@@ -14,7 +14,12 @@ const UserProfile: FC = (): ReactElement => {
 
   return (
     <div className="UserProfile">
-      <p>Welcome, {user ? user.display_name : "Guest"}!</p>
+      <img
+        id="idProfilePicture"
+        src={user?.images[0].url}
+        alt="profilePicture"
+      />
+      <p>{user ? user.display_name : "Guest"}</p>
     </div>
   );
 };

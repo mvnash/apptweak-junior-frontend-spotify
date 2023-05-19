@@ -40,6 +40,7 @@ const SearchBar: React.FC = () => {
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="searchBarContainer">
         <input
+          id="searchInput"
           type="text"
           placeholder="Search for a track"
           value={query}
@@ -54,7 +55,12 @@ const SearchBar: React.FC = () => {
             <ul className="searchResult">
               {searchTracks.map((track) => (
                 <li key={track.id}>
-                  <SimplifiedTrackComponent key={track.id} album={track.album} name={track.name}/>
+                  <SimplifiedTrackComponent
+                    key={track.id}
+                    album={track.album}
+                    name={track.name}
+                    uri={track.uri}
+                  />
                 </li>
               ))}
             </ul>

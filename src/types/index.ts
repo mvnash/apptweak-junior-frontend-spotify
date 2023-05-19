@@ -147,4 +147,5 @@ export interface SpotifyTrackItem {
 export interface SimplifiedTrack {
   album: AlbumObject;
   name: string;
+  uri: string;
 }
