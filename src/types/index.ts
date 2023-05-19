@@ -4,6 +4,29 @@ interface ImagesObjects {
   width?: number;
 }
 
+interface AlbumObject {
+  album_type: string;
+  total_tracks: number;
+  available_markets: string[];
+  external_urls: object;
+  href: string;
+  id: string;
+  images: ImagesObjects[];
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  restrictions?: object;
+  type: string;
+  uri: string;
+  copyrights: object[];
+  external_ids: object;
+  genres: string[];
+  label: string;
+  popularity: number;
+  artists: ArtistObject[];
+  tracks: object;
+}
+
 interface SimplifiedPlaylistObjects {
   collaborative: boolean;
   description?: string;
@@ -23,45 +46,45 @@ interface SimplifiedPlaylistObjects {
 interface ArtistObject {
   external_urls: object;
   followers: object;
-  genres: Array<String>;
+  genres: string[];
   href: string;
   id: string;
-  images: Array<ImagesObjects>;
+  images: ImagesObjects[];
   name: string;
   popularity: number;
   type: string;
   uri: string;
 }
 
-interface EpisodeObject {
-    audio_preview_url:string;
-    description:string;
-    html_description:string;
-    duration_ms:number;
-    explicit:boolean;
-    external_urls:object;
-    href:string;
-    id:string;
-    images:Array<ImagesObjects>;
-    is_externally_hosted:boolean;
-    is_playable:boolean;
-    languages:Array<String>;
-    name:string;
-    release_date:string;
-    release_date_precision:string;
-    resume_point:object;
-    type:string;
-    uri:string;
-    restrictions?:object;
-    show:object;
-  }
+export interface EpisodeObject {
+  audio_preview_url: string;
+  description: string;
+  html_description: string;
+  duration_ms: number;
+  explicit: boolean;
+  external_urls: object;
+  href: string;
+  id: string;
+  images: ImagesObjects[];
+  is_externally_hosted: boolean;
+  is_playable: boolean;
+  languages: string[];
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  resume_point: object;
+  type: string;
+  uri: string;
+  restrictions?: object;
+  show: object;
+}
 
 interface PlaylistTrackObject {
-    added_at:string;
-    added_by:object;
-    is_local:boolean;
-    track: SpotifyTrackItem | EpisodeObject;
-  }
+  added_at: string;
+  added_by: object;
+  is_local: boolean;
+  track: SpotifyTrackItem | EpisodeObject;
+}
 
 export interface User {
   country: string;
@@ -72,7 +95,7 @@ export interface User {
   followers: object;
   href: string;
   id: string;
-  images: Array<ImagesObjects>;
+  images: ImagesObjects[];
   product: string;
   type: string;
   uri: string;
@@ -85,23 +108,23 @@ export interface SpotifyPlaylist {
   offset: number;
   previous?: string;
   total: number;
-  items: Array<SimplifiedPlaylistObjects>;
+  items: SimplifiedPlaylistObjects[];
 }
 
 export interface SpotifyTrack {
   href: string;
   limit: number;
-  next?:string;
-  offset:number;
-  previous?:string;
-  total:number;
-  items: Array<PlaylistTrackObject>;
+  next?: string;
+  offset: number;
+  previous?: string;
+  total: number;
+  items: PlaylistTrackObject[];
 }
 
 export interface SpotifyTrackItem {
-  album: object;
-  artists: Array<ArtistObject>;
-  available_markets: Array<string>;
+  album: AlbumObject;
+  artists: ArtistObject[];
+  available_markets: string[];
   disc_number: number;
   duration_ms: number;
   explicit: boolean;

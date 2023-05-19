@@ -4,8 +4,8 @@ import { FC, ReactElement } from "react";
 import { useSelector } from "react-redux";
 
 import { authSelectors } from "./containers/auth/selectors";
-import logo from "./logo.svg";
 import { useGetUserQuery } from "./api/apiSlice";
+import PlaylistPage from "./components/PlaylistPage";
 
 const App: FC = (): ReactElement => {
   const accessToken = useSelector(authSelectors.getAccessToken);
@@ -18,23 +18,7 @@ const App: FC = (): ReactElement => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-        Welcome, {user ? user.display_name : 'Guest'}!
-      </p>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PlaylistPage/>
     </div>
   );
 };
