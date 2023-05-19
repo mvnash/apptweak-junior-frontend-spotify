@@ -1,3 +1,7 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .selectionPlaylistContainer {
   margin-left: 10%;
   display: flex;
@@ -20,7 +24,6 @@
 }
 
 .coverAlbum {
-  margin-right: 5%;
   width: 100px;
   height: 100px;
 }
@@ -36,12 +39,7 @@ ul {
 }
 
 li {
-  margin-bottom: 5px;
-}
-
-.albumName,
-.albumReleaseDate {
-  margin-left: 8%;
+  margin-bottom: 5%;
 }
 
 .albumReleaseDate {
@@ -49,7 +47,9 @@ li {
   color: gray;
 }
 
-.coverAlbum {
-  height:100px;
-  width:100px;
+.titleArtistContainer,
+.descriptionContainer,
+.albumNameContainer,
+.releaseDateContainer {
+  width: 25%;
 }

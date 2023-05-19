@@ -24,11 +24,19 @@ const EpisodeComponent: React.FC<EpisodeObject> = ({
   show,
 }) => {
   return (
-    <div>
-      <img className="coverAlbum" src={images[0].url} alt="Cover" />
-      <p>{name}</p>
-      <p>{description ?? ""}</p>
-      <p>{release_date}</p>
+    <div className="trackContainer">
+      <div className="coverDivContainer">
+        <img className="coverAlbum" src={images[0].url} alt="Cover" />
+      </div>
+      <div className="titleArtistContainer">
+        <p>{name}</p>
+      </div>
+      <div className="descriptionContainer">
+        <p>{description ?? ""}</p>
+      </div>
+      <div className="releaseDateContainer">
+        <p>{release_date}</p>
+      </div>
     </div>
   );
 };

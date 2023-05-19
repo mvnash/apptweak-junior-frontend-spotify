@@ -25,11 +25,9 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
 }) => {
   return (
     <div className="trackContainer">
-      <img
-        className="coverAlbum"
-        src={album.images[0].url}
-        alt="Cover"
-      />
+      <div className="coverDivContainer">
+        <img className="coverAlbum" src={album.images[0].url} alt="Cover" />
+      </div>
       <div className="titleArtistContainer">
         <p className="titleTrack">{name}</p>
         <ul>
@@ -38,8 +36,12 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
           ))}
         </ul>
       </div>
-      <p className="albumName">{album.name}</p>
-      <p className="albumReleaseDate">{album.release_date}</p>
+      <div className="albumNameContainer">
+        <p className="albumName">{album.name}</p>
+      </div>
+      <div className="releaseDateContainer">
+        <p className="albumReleaseDate">{album.release_date}</p>
+      </div>
     </div>
   );
 };

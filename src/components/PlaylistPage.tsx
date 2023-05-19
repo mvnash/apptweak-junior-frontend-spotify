@@ -10,6 +10,7 @@ import { authSelectors } from "../containers/auth/selectors";
 import TrackItemComponent from "./TrackItemComponent";
 import { EpisodeObject, SpotifyTrackItem } from "../types";
 import EpisodeComponent from "./EpisodeComponent";
+import DropdownMenu from "./DropDownMenu";
 
 const PlaylistPage: FC = (): ReactElement => {
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(
@@ -20,14 +21,12 @@ const PlaylistPage: FC = (): ReactElement => {
   const { data: user } = useGetUserQuery(undefined, {
     skip: !accessToken,
   });
-  console.log("user=>");
   console.log(user);
+  
 
   const { data: playlists } = useGetPlaylistsQuery(undefined, {
     skip: !accessToken,
   });
-  console.log("playlists=>");
-  console.log(playlists);
 
   const { data: playlistTracks } = useGetPlaylistTracksQuery(
     "playlists/" + selectedPlaylistId + "/tracks",
@@ -35,23 +34,15 @@ const PlaylistPage: FC = (): ReactElement => {
       skip: !accessToken || !selectedPlaylistId,
     }
   );
-  console.log("tracks=>");
-  console.log(playlistTracks);
 
   return (
     <div className="PlaylistPage">
       <div className="selectionPlaylistContainer">
-        <select
-          value={selectedPlaylistId ?? "Select Playlist"}
-          onChange={(e) => setSelectedPlaylistId(e.target.value)}
-        >
-          <option value="">Select Playlist</option>
-          {playlists?.items.map((playlist) => (
-            <option key={playlist.id} value={playlist.id}>
-              {playlist.name}
-            </option>
-          ))}
-        </select>
+      <DropdownMenu
+          selectedPlaylistId={selectedPlaylistId}
+          playlists={playlists}
+          setSelectedPlaylistId={setSelectedPlaylistId}
+        />
         <h2 id="labelSelectionPlaylist">Selected Playlist description</h2>
       </div>
 
