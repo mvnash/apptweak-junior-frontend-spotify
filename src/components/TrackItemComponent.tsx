@@ -25,14 +25,20 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
 }) => {
   return (
     <div className="trackContainer">
-      <img className="coverAlbum" src={album.images[0].url} alt="Cover" height={100} width={100} />
+      <img
+        className="coverAlbum"
+        src={album.images[0].url}
+        alt="Cover"
+        height={100}
+        width={100}
+      />
       <div className="titleArtistContainer">
-      <p className="titleTrack">{name}</p>
-      <ul>
-        {artists.map((artist, index) => (
-          <li key={index}>{artist.name}</li>
-        ))}
-      </ul>
+        <p className="titleTrack">{name}</p>
+        <ul>
+          {artists.map((artist, index) => (
+            <li key={index}>{artist.name}</li>
+          ))}
+        </ul>
       </div>
       <p className="albumName">{album.name}</p>
       <p className="albumReleaseDate">{album.release_date}</p>

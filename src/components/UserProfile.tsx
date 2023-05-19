@@ -14,9 +14,7 @@ const UserProfile: FC = (): ReactElement => {
 
   return (
     <div className="UserProfile">
-      <p>
-        Welcome, {user ? user.display_name : 'Guest'}!
-      </p>
+      <p>Welcome, {user ? user.display_name : "Guest"}!</p>
     </div>
   );
 };

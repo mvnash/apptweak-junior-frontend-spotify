@@ -10,7 +10,6 @@ import PlaylistPage from "./components/PlaylistPage";
 const App: FC = (): ReactElement => {
   const accessToken = useSelector(authSelectors.getAccessToken);
 
-  // TODO: You can access user data and now fetch user's playlists
   const { data: user } = useGetUserQuery(undefined, {
     skip: !accessToken,
   });
@@ -18,7 +17,7 @@ const App: FC = (): ReactElement => {
 
   return (
     <div className="App">
-      <PlaylistPage/>
+      <PlaylistPage />
     </div>
   );
 };
