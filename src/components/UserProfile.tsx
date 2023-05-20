@@ -11,7 +11,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     <div className="UserProfile">
       <img
         id="idProfilePicture"
-        src={user?.images[0].url}
+        src={user?.images[0]?.url}
         alt="profilePicture"
       />
       <p>{user ? user.display_name : "Guest"}</p>
