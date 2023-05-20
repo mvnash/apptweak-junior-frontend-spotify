@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useGetSearchTrackResultQuery } from "../api/apiSlice";
 import { useSelector } from "react-redux";
 import { authSelectors } from "../containers/auth/selectors";
-import TrackItemComponent from "./TrackItemComponent";
 import SimplifiedTrackComponent from "./SimplifiedTrackComponent";
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  selectedPlaylistId: string;
+}
+
+const SearchBar: React.FC<SearchBarProps> = (props) => {
   const accessToken = useSelector(authSelectors.getAccessToken);
   const [query, setQuery] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -14,10 +17,12 @@ const SearchBar: React.FC = () => {
     skip: !accessToken || !query,
   });
 
+  // To avoid result dissapear if the button is clicked
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
+  // To get result everytime query change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
@@ -60,6 +65,7 @@ const SearchBar: React.FC = () => {
                     album={track.album}
                     name={track.name}
                     uri={track.uri}
+                    selectedPlaylistId={props.selectedPlaylistId}
                   />
                 </li>
               ))}

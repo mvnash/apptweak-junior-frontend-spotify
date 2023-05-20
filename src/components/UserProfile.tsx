@@ -1,17 +1,12 @@
-import { FC, ReactElement } from "react";
-import { useSelector } from "react-redux";
+import { User } from "../types";
 
-import { useGetUserQuery } from "../api/apiSlice";
-import { authSelectors } from "../containers/auth/selectors";
+interface UserProfileProps {
+  user: User | undefined;
+}
 
-const UserProfile: FC = (): ReactElement => {
-  const accessToken = useSelector(authSelectors.getAccessToken);
-
-  const { data: user } = useGetUserQuery(undefined, {
-    skip: !accessToken,
-  });
-  console.log(user);
-
+const UserProfile: React.FC<UserProfileProps> = ({
+  user,
+}) => {
   return (
     <div className="UserProfile">
       <img

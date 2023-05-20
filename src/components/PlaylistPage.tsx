@@ -13,6 +13,8 @@ import EpisodeComponent from "./EpisodeComponent";
 import DropdownMenu from "./DropDownMenu";
 import SearchBar from "./SearchBar";
 import UserProfile from "./UserProfile";
+import CreatePlaylistButton from "./CreatePlaylistButton";
+import UnfollowPlaylistButton from "./UnfollowPlaylistButton";
 
 const PlaylistPage: FC = (): ReactElement => {
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string>("");
@@ -38,31 +40,39 @@ const PlaylistPage: FC = (): ReactElement => {
     <div className="PlaylistPage">
       <div className="topContainer">
         <div className="searchBarContainer">
-          <SearchBar />
+          <SearchBar selectedPlaylistId={selectedPlaylistId} />
         </div>
         <div className="userProfileContainer">
-          <UserProfile />
+          <UserProfile user={user}/>
         </div>
       </div>
-      <div className="selectionPlaylistContainer">
+      <div className="secondTopContainer">
         <DropdownMenu
           selectedPlaylistId={selectedPlaylistId}
           playlists={playlists}
           setSelectedPlaylistId={setSelectedPlaylistId}
         />
         <h2 id="labelSelectionPlaylist">Selected Playlist description</h2>
+        <div className="buttonContainer">
+          <UnfollowPlaylistButton playlistID={selectedPlaylistId} />
+          <CreatePlaylistButton userID={user?.id ?? ""} />
+        </div>
       </div>
 
-      {playlistTracks?.items.map((item) => {
-        const track = item.track;
-        if (track.type === "track") {
-          const typedTrack: SpotifyTrackItem = track as SpotifyTrackItem;
-          return <TrackItemComponent key={track.id} {...typedTrack} />;
-        } else {
-          const typedTrack: EpisodeObject = track as EpisodeObject;
-          return <EpisodeComponent key={track.id} {...typedTrack} />;
-        }
-      })}
+      {playlistTracks && playlistTracks.items.length > 0 ? (
+        playlistTracks?.items.map((item) => {
+          const track = item.track;
+          if (track.type === "track") {
+            const typedTrack: SpotifyTrackItem = track as SpotifyTrackItem;
+            return <TrackItemComponent key={track.id} {...typedTrack} />;
+          } else {
+            const typedTrack: EpisodeObject = track as EpisodeObject;
+            return <EpisodeComponent key={track.id} {...typedTrack} />;
+          }
+        })
+      ) : (
+        <h1 className="noTracksErrorMessage">Nothing here..</h1>
+      )}
     </div>
   );
 };

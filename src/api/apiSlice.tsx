@@ -50,10 +50,10 @@ export const apiSlice = createApi({
     }),
     addTrackToPlaylist: builder.mutation<
       void,
-      { playlistId: string; uris: string[] }
+      { selectedPlaylistId: string; uris: string[] }
     >({
-      query: ({ playlistId, uris }) => ({
-        url: `/playlists/${playlistId}/tracks`,
+      query: ({ selectedPlaylistId, uris }) => ({
+        url: `/playlists/${selectedPlaylistId}/tracks`,
         method: "POST",
         body: { uris },
       }),
@@ -63,15 +63,19 @@ export const apiSlice = createApi({
       {
         userID: string;
         name: string;
-        isPublic: boolean;
-        isCollaborative: boolean;
         description: string;
       }
     >({
-      query: ({ userID, name, isPublic, isCollaborative, description }) => ({
+      query: ({ userID, name, description }) => ({
         url: `/users/${userID}/playlists`,
         method: "POST",
-        body: { name, isPublic, isCollaborative, description },
+        body: { name, description },
+      }),
+    }),
+    unfollowPlaylist: builder.mutation<void, { playlistID: string }>({
+      query: (playlistRef) => ({
+        url: `/playlists/${playlistRef}/followers`,
+        method: "DELETE",
       }),
     }),
   }),
@@ -84,6 +88,7 @@ export const {
   useGetSearchTrackResultQuery,
   useAddTrackToPlaylistMutation,
   useCreatePlaylistMutation,
+  useUnfollowPlaylistMutation,
 } = apiSlice;
 
 export default apiSlice.reducer;

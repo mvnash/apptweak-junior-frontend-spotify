@@ -148,4 +148,5 @@ export interface SimplifiedTrack {
   album: AlbumObject;
   name: string;
   uri: string;
+  selectedPlaylistId: string;
 }
