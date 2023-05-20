@@ -23,6 +23,15 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
   uri,
   is_local,
 }) => {
+    const formatDuration = (duration:number) => {
+      const minutes = Math.floor(duration / 60000);
+      const seconds = ((duration % 60000) / 1000).toFixed(0);
+  
+      return `${minutes}:${seconds.padStart(2, "0")}`;
+    };
+  
+    const formattedDuration = formatDuration(duration_ms);
+
   return (
     <div className="trackContainer">
       <div className="coverDivContainer">
@@ -41,6 +50,9 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
       </div>
       <div className="releaseDateContainer">
         <p className="albumReleaseDate">{album.release_date}</p>
+      </div>
+      <div className="durationContainer">
+        <p className="duration">{formattedDuration}</p>
       </div>
     </div>
   );
