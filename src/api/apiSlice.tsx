@@ -72,13 +72,15 @@ export const apiSlice = createApi({
         body: { name, description },
       }),
     }),
+    /*
     unfollowPlaylist: builder.mutation<void, { playlistID: string }>({
       query: (playlistRef) => ({
         url: `/playlists/${playlistRef}/followers`,
         method: "DELETE",
-        //mode: 'no-cors',  -> to get opaque response
+        //  mode: 'no-cors',  // -> to get opaque response
       }),
     }),
+    */
   }),
 });
 
@@ -89,7 +91,7 @@ export const {
   useGetSearchTrackResultQuery,
   useAddTrackToPlaylistMutation,
   useCreatePlaylistMutation,
-  useUnfollowPlaylistMutation,
+  //useUnfollowPlaylistMutation,
 } = apiSlice;
 
 export default apiSlice.reducer;

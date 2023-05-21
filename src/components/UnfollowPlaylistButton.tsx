@@ -1,5 +1,5 @@
 import React from "react";
-import { useUnfollowPlaylistMutation } from "../api/apiSlice";
+//import { useUnfollowPlaylistMutation } from "../api/apiSlice";
 
 interface UnfollowPlaylistButtonProps {
   playlistID: string;
@@ -8,14 +8,13 @@ interface UnfollowPlaylistButtonProps {
 const CreatePlaylistButton: React.FC<UnfollowPlaylistButtonProps> = ({
   playlistID,
 }) => {
-  const [unfollowPlaylist] = useUnfollowPlaylistMutation();
+  //const [unfollowPlaylist] = useUnfollowPlaylistMutation();
 
   const handleOnClickDeleteButton = (
     event: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
-    unfollowPlaylist({ playlistID });
+    //unfollowPlaylist({ playlistID });
     // window.location.reload();
-    // TODO Cors Policy block the request
   };
 
   return (
