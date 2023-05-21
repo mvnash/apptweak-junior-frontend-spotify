@@ -76,6 +76,7 @@ export const apiSlice = createApi({
       query: (playlistRef) => ({
         url: `/playlists/${playlistRef}/followers`,
         method: "DELETE",
+        //mode: 'no-cors',  -> to get opaque response
       }),
     }),
   }),

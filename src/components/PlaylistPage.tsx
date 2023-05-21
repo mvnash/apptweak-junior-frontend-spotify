@@ -10,14 +10,16 @@ import { authSelectors } from "../containers/auth/selectors";
 import TrackItemComponent from "./TrackItemComponent";
 import { EpisodeObject, SpotifyTrackItem } from "../types";
 import EpisodeComponent from "./EpisodeComponent";
-import DropdownMenu from "./DropDownMenu";
+import DropdownMenu from "./SelectPlaylistMenu";
 import SearchBar from "./SearchBar";
 import UserProfile from "./UserProfile";
 import CreatePlaylistButton from "./CreatePlaylistButton";
 import UnfollowPlaylistButton from "./UnfollowPlaylistButton";
+import SelectSortType from "./SelectSortType";
 
 const PlaylistPage: FC = (): ReactElement => {
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string>("");
+  const [selectedSortType, setSelectedSortType] = useState<string>("");
   const accessToken = useSelector(authSelectors.getAccessToken);
 
   const { data: user } = useGetUserQuery(undefined, {
@@ -36,6 +38,21 @@ const PlaylistPage: FC = (): ReactElement => {
     }
   );
 
+  // To sort playlistTracks.items with the selectedSortType state. By default it's sorted by release date.
+  const sortedItems =
+    selectedSortType && playlistTracks && playlistTracks.items.length > 0
+      ? [...playlistTracks.items].sort((a, b) => {
+          switch (selectedSortType) {
+            case "Name":
+              return a.track.name.localeCompare(b.track.name);
+            case "Duration":
+              return a.track.duration_ms - b.track.duration_ms;
+            default:
+              return 0;
+          }
+        })
+      : playlistTracks?.items;
+
   return (
     <div className="PlaylistPage">
       <div className="topContainer">
@@ -43,24 +60,27 @@ const PlaylistPage: FC = (): ReactElement => {
           <SearchBar selectedPlaylistId={selectedPlaylistId} />
         </div>
         <div className="userProfileContainer">
-          <UserProfile user={user}/>
+          <UserProfile user={user} />
         </div>
       </div>
       <div className="secondTopContainer">
+        <SelectSortType
+          selectedSortType={selectedSortType}
+          setSelectedSortType={setSelectedSortType}
+        />
         <DropdownMenu
           selectedPlaylistId={selectedPlaylistId}
           playlists={playlists}
           setSelectedPlaylistId={setSelectedPlaylistId}
         />
-        <h2 id="labelSelectionPlaylist">Selected Playlist description</h2>
         <div className="buttonContainer">
           <UnfollowPlaylistButton playlistID={selectedPlaylistId} />
           <CreatePlaylistButton userID={user?.id ?? ""} />
         </div>
       </div>
 
-      {playlistTracks && playlistTracks.items.length > 0 ? (
-        playlistTracks?.items.map((item) => {
+      {sortedItems && sortedItems.length > 0 ? (
+        sortedItems?.map((item) => {
           const track = item.track;
           if (track.type === "track") {
             const typedTrack: SpotifyTrackItem = track as SpotifyTrackItem;

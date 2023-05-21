@@ -22,11 +22,7 @@ body {
 .secondTopContainer {
   display: flex;
   align-items: center;
-}
-
-#labelSelectionPlaylist {
-  margin-left: 3%;
-  color: #1e90ff;
+  margin-bottom: 1%;
 }
 
 .trackContainer {
@@ -104,7 +100,7 @@ li {
 }
 
 .dropdownContainer {
-  margin-left: 10%;
+  margin-right: 2%;
   display: flex;
   align-items: center;
 }

@@ -4,9 +4,7 @@ interface UserProfileProps {
   user: User | undefined;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({
-  user,
-}) => {
+const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   return (
     <div className="UserProfile">
       <img

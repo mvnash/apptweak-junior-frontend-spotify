@@ -1,13 +1,13 @@
 import React from "react";
 import { SpotifyPlaylist } from "../types";
 
-interface DropdownMenuProps {
+interface SelectPlaylistMenuProps {
   selectedPlaylistId: string | null;
   playlists: SpotifyPlaylist | undefined;
   setSelectedPlaylistId: (playlistId: string) => void;
 }
 
-const DropdownMenu: React.FC<DropdownMenuProps> = ({
+const SelectPlaylistMenu: React.FC<SelectPlaylistMenuProps> = ({
   selectedPlaylistId,
   playlists,
   setSelectedPlaylistId,
@@ -34,4 +34,4 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
   );
 };
 
-export default DropdownMenu;
+export default SelectPlaylistMenu;
