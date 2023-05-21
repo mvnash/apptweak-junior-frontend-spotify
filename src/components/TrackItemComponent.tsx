@@ -1,5 +1,6 @@
 import React from "react";
 import { SpotifyTrackItem } from "../types";
+import formatDuration from "../utils/format";
 
 const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
   album,
@@ -23,14 +24,7 @@ const TrackItemComponent: React.FC<SpotifyTrackItem> = ({
   uri,
   is_local,
 }) => {
-    const formatDuration = (duration:number) => {
-      const minutes = Math.floor(duration / 60000);
-      const seconds = ((duration % 60000) / 1000).toFixed(0);
-  
-      return `${minutes}:${seconds.padStart(2, "0")}`;
-    };
-  
-    const formattedDuration = formatDuration(duration_ms);
+  const formattedDuration = formatDuration(duration_ms);
 
   return (
     <div className="trackContainer">

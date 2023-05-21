@@ -1,5 +1,6 @@
 import React from "react";
 import { EpisodeObject } from "../types";
+import formatDuration from "../utils/format";
 
 const EpisodeComponent: React.FC<EpisodeObject> = ({
   audio_preview_url,
@@ -23,6 +24,7 @@ const EpisodeComponent: React.FC<EpisodeObject> = ({
   restrictions,
   show,
 }) => {
+  const formattedDuration = formatDuration(duration_ms);
   return (
     <div className="trackContainer">
       <div className="coverDivContainer">
@@ -36,6 +38,9 @@ const EpisodeComponent: React.FC<EpisodeObject> = ({
       </div>
       <div className="releaseDateContainer">
         <p>{release_date}</p>
+      </div>
+      <div className="durationContainer">
+        <p className="duration">{formattedDuration}</p>
       </div>
     </div>
   );
