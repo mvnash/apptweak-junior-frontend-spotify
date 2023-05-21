@@ -72,7 +72,8 @@ export const apiSlice = createApi({
         body: { name, description },
       }),
     }),
-    /*
+    /*          -> For Unfollow Playlist feature.
+    
     unfollowPlaylist: builder.mutation<void, { playlistID: string }>({
       query: (playlistRef) => ({
         url: `/playlists/${playlistRef}/followers`,
@@ -91,7 +92,7 @@ export const {
   useGetSearchTrackResultQuery,
   useAddTrackToPlaylistMutation,
   useCreatePlaylistMutation,
-  //useUnfollowPlaylistMutation,
+  //useUnfollowPlaylistMutation,          -> For Unfollow Playlist feature.
 } = apiSlice;
 
 export default apiSlice.reducer;

@@ -14,7 +14,7 @@ import DropdownMenu from "./SelectPlaylistMenu";
 import SearchBar from "./SearchBar";
 import UserProfile from "./UserProfile";
 import CreatePlaylistButton from "./CreatePlaylistButton";
-//import UnfollowPlaylistButton from "./UnfollowPlaylistButton";
+//import UnfollowPlaylistButton from "./UnfollowPlaylistButton";      -> For Unfollow Playlist feature.
 import SelectSortType from "./SelectSortType";
 
 const PlaylistPage: FC = (): ReactElement => {
@@ -74,7 +74,7 @@ const PlaylistPage: FC = (): ReactElement => {
           setSelectedPlaylistId={setSelectedPlaylistId}
         />
         <div className="buttonContainer">
-          {/* <UnfollowPlaylistButton playlistID={selectedPlaylistId} /> */}
+          {/* <UnfollowPlaylistButton playlistID={selectedPlaylistId} /> -> For Unfollow Playlist feature. */}
           <CreatePlaylistButton userID={user?.id ?? ""} />
         </div>
       </div>
