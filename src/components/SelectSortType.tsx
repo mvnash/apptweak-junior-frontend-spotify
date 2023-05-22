@@ -1,5 +1,4 @@
 import React from "react";
-import { SpotifyPlaylist } from "../types";
 
 interface SelectPlaylistMenuProps {
   selectedSortType: string | null;
@@ -19,10 +18,10 @@ const SelectPlaylistMenu: React.FC<SelectPlaylistMenuProps> = ({
       <select
         id="dropdownMenu"
         className="dropdownMenu"
-        value={selectedSortType ?? "Release Date"}
+        value={selectedSortType ?? "Custom Sort"}
         onChange={(e) => setSelectedSortType(e.target.value)}
       >
-        <option value="">Release Date</option>
+        <option value="">Custom Sort</option>
         {types?.map((sortType) => (
           <option key={sortType} value={sortType}>
             {sortType}
