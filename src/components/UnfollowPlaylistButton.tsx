@@ -10,10 +10,10 @@ const CreatePlaylistButton: React.FC<UnfollowPlaylistButtonProps> = ({
 }) => {
   const [unfollowPlaylist] = useUnfollowPlaylistMutation();         
 
-  const handleOnClickDeleteButton = (
+  const handleOnClickDeleteButton = async (
     event: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
-    unfollowPlaylist({ playlistID });        
+    await unfollowPlaylist({ playlistID });        
     window.location.reload();          
   };
 

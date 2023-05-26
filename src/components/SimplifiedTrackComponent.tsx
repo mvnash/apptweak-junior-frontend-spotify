@@ -9,10 +9,10 @@ const SimplifiedTrackComponent: React.FC<SimplifiedTrack> = ({
 }) => {
   const [addTrackToPlaylist] = useAddTrackToPlaylistMutation();
 
-  const handleOnClickAddButton = (
+  const handleOnClickAddButton = async (
     event: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
-    addTrackToPlaylist({ selectedPlaylistId, uris: [uri] });
+    await addTrackToPlaylist({ selectedPlaylistId, uris: [uri] });
     window.location.reload();
   };
 

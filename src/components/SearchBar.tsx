@@ -57,7 +57,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
         </button>
 
         <div className="searchMenuResult">
-          {searchTracks && Array.isArray(searchTracks) && query.length > 3 && (
+          {searchTracks && query.length > 3 && (
             <ul className="searchResult">
               {searchTracks.map((track) => (
                 <li key={track.id}>

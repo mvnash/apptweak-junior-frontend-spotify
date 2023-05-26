@@ -1,5 +1,6 @@
 import React from "react";
 import { useCreatePlaylistMutation } from "../api/apiSlice";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 interface CreatePlaylistButtonProps {
   userID: string;
@@ -10,10 +11,10 @@ const CreatePlaylistButton: React.FC<CreatePlaylistButtonProps> = ({
 }) => {
   const [createPlaylist] = useCreatePlaylistMutation();
 
-  const handleOnClickCreateButton = (
+  const handleOnClickCreateButton = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    createPlaylist({ userID, name: "My New Playlist", description: "" });
+    await createPlaylist({ userID, name: "My New Playlist", description: "" });
     window.location.reload();
   };
 

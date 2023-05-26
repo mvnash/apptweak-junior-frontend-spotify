@@ -39,7 +39,7 @@ export const apiSlice = createApi({
         method: "GET",
       }),
     }),
-    getSearchTrackResult: builder.query<SpotifyTrackItem, string>({
+    getSearchTrackResult: builder.query<Array<SpotifyTrackItem>, string>({
       query: (search) => ({
         url: `/search?q=${search}&type=track`,
         method: "GET",
