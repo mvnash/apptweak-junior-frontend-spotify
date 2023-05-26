@@ -13,8 +13,9 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
   const [query, setQuery] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
+  
   const { data: searchTracks } = useGetSearchTrackResultQuery(query, {
-    skip: !accessToken || !query,
+    skip: !accessToken || !query || query.length<3,
   });
 
   // To avoid result dissapear if the button is clicked
@@ -56,7 +57,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
         </button>
 
         <div className="searchMenuResult">
-          {searchTracks && Array.isArray(searchTracks) && query !== "" && (
+          {searchTracks && Array.isArray(searchTracks) && query.length > 3 && (
             <ul className="searchResult">
               {searchTracks.map((track) => (
                 <li key={track.id}>
